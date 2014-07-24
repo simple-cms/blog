@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model;
 use SimpleCms\Blog\Post\RepositoryInterface;
 use SimpleCms\Core\Repositories\AbstractEloquentRepository;
 
-class EloquentPostRepository extends AbstractEloquentRepository implements RepositoryInterface {
+class EloquentPostRepository extends AbstractEloquentRepository implements PostRepositoryInterface {
 
   /**
    * @var Model

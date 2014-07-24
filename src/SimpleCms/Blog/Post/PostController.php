@@ -8,18 +8,18 @@ class PostController extends BaseController {
   /**
    * Store our PostRepositoryInterface implementation.
    *
-   * @var Simple\Blog\Interfaces\PostRepositoryInterface
+   * @var Simple\Blog\Post\PostRepositoryInterface
    */
   protected $postInterface;
 
   /**
    * Set up the class
    *
-   * @param Simple\Blog\Interfaces\PostRepositoryInterface $posts
+   * @param Simple\Blog\Post\PostRepositoryInterface $posts
    *
    * @return void
    */
-  public function __construct(RepositoryInterface $posts)
+  public function __construct(PostRepositoryInterface $posts)
   {
     // Call the parent constructor just in case
     parent::__construct();

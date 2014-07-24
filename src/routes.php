@@ -1,3 +1,3 @@
 <?php
 
-Route::resource('blog', 'SimpleCms\Blog\Controllers\PostController');
+Route::resource('blog', 'SimpleCms\Blog\Post\PostController');
