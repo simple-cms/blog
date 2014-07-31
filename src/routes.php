@@ -1,3 +1,8 @@
 <?php
 
-Route::resource('blog', 'SimpleCms\Blog\Post\PostController');
+Route::resource('post', 'SimpleCms\Blog\Post\PostPublicController');
+
+Route::group(['prefix' => 'control'], function()
+{
+  Route::resource('post', 'SimpleCms\Blog\Post\PostAdminController');
+});

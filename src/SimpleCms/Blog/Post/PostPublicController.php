@@ -2,8 +2,9 @@
 
 use SimpleCms\Blog\Post\PostRepositoryInterface;
 use SimpleCms\Core\Controllers\BaseController;
+use View;
 
-class PostController extends BaseController {
+class PostPublicController extends BaseController {
 
   /**
    * Store our PostRepositoryInterface implementation.
@@ -35,7 +36,7 @@ class PostController extends BaseController {
    */
   public function index()
   {
-    return \View::make('blog::Public/PostList', [
+    return View::make('blog::Public/PostList', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
       'posts' => $this->posts->all()
@@ -49,10 +50,11 @@ class PostController extends BaseController {
    */
   public function show($slug)
   {
-    return \View::make('blog::Public/PostShow', [
+    return View::make('blog::Public/PostShow', [
       'metaTitle' => 'slug page title',
       'metaDesciption' => 'slug page description',
       'post' => $this->posts->getFirstBy('slug', $slug)
     ]);
   }
+
 }

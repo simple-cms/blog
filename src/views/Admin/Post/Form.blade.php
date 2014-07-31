@@ -1,82 +1,63 @@
-@extends('admin::Admin/Base')
+@extends('core::Admin/Base')
 
 @section('content')
+<aside class="right-side">
+  <section class="content-header">
+    <h1>
+      Blog Posts
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a href="{{ route('control.post.index') }}">Posts</a></li>
+      <li class="active">Edit</li>
+    </ol>
+  </section>
 
-@if (isset($post))
-{{ Form::model($post, ['method' => 'PUT', 'route' => ['control.post.update', $post->id], 'class' => 'form-horizontal']) }}
-	{{ Form::hidden('id') }}
-	{{ Form::hidden('author_id') }}
-@else
-{{ Form::open(['method' => 'POST', 'route' => 'control.post.store', 'class' => 'form-horizontal']) }}
-	{{ Form::hidden('author_id', Auth::user()->id) }}
-@endif
-
-	<div class="control-group{{ $errors->has('reference') ? ' error' : '' }}">
-		{{ Form::label('reference', Lang::get('blog::post.labelReference'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::text('reference', null, ['class' => 'input-xxlarge']) }}
-			{{ $errors->first('reference', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpReference') }}</p>
-		</div>
-	</div>
-
-	<div class="control-group{{ $errors->has('title') ? ' error' : '' }}">
-	 {{ Form::label('title', Lang::get('blog::post.labelTitle'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::text('title', null, ['class' => 'input-xxlarge']) }}
-			{{ $errors->first('title', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpTitle') }}</p>
-		</div>
-	</div>
-
-	<div class="control-group{{ $errors->has('description') ? ' error' : '' }}">
-		{{ Form::label('description', Lang::get('blog::post.labelDescription'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::text('description', null, ['class' => 'input-xxlarge']) }}
-			{{ $errors->first('description', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpDescription') }}</p>
-		</div>
-	</div>
-
-	<div class="control-group{{ $errors->has('slug') ? ' error' : '' }}">
-		{{ Form::label('slug', Lang::get('blog::post.labelSlug'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::text('slug', null, ['class' => 'input-xxlarge']) }}
-			{{ $errors->first('slug', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpSlug') }}</p>
-		</div>
-	</div>
-
-	<div class="control-group{{ $errors->has('category_id') ? ' error' : '' }}">
-		{{ Form::label('category_id', Lang::get('blog::post.labelCategory'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::select('category_id', $categories) }}
-			{{ $errors->first('category_id', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpCategory') }}</p>
-		</div>
-	</div>
-
-	<div class="control-group{{ $errors->has('status') ? ' error' : '' }}">
-		{{ Form::label('status', Lang::get('blog::post.labelStatus'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::select('status', ['1' => Lang::get('admin::misc.stateLive'), '0' => Lang::get('admin::misc.stateHidden')]) }}
-			{{ $errors->first('status', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpStatus') }}</p>
-		</div>
-	</div>
-
-	<div class="control-group{{ $errors->has('content') ? ' error' : '' }}">
-		{{ Form::label('content', Lang::get('blog::post.labelContent'), ['class' => 'control-label']) }}
-		<div class="controls">
-			{{ Form::textarea('content', null, ['class' => 'input-xxlarge ckeditor']) }}
-			{{ $errors->first('content', '<p class="help-block">:message</p>') }}
-			<p class="help-block">{{ Lang::get('blog::post.helpContent') }}</p>
-		</div>
-	</div>
-
-	<div class="form-actions">
-		{{ Form::submit(Lang::get('admin::misc.buttonSubmit'), ['class' => 'btn btn-primary']) }}
-		<a href='{{ route('control.post.index') }}' class='btn'>{{ Lang::get('admin::misc.buttonCancel') }}</a>
-	</div>
-{{ Form::close() }}
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box {{ $errors->count() ? 'box-danger' : 'box-primary' }} ">
+          <div class="box-body">
+          @if (isset($post))
+            {{ Form::model($post, ['method' => 'PUT', 'route' => ['control.post.update', $post->slug], 'role' => 'form']) }}
+            {{ Form::hidden('author_id', 1) }}
+          @else
+            {{ Form::open(['method' => 'POST', 'route' => 'control.post.store', 'role' => 'form']) }}
+            {{ Form::hidden('author_id', 1) }}
+          @endif
+            <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+              {{ Form::label('title', 'Title') }}
+              {{ Form::text('title', null, ['class' => 'form-control']) }}
+              {{ $errors->first('title', '<p class="text-red">:message</p>') }}
+            </div>
+            <div class="form-group {{ $errors->has('meta_title') ? 'has-error' : '' }}">
+              {{ Form::label('meta_title', 'META Title') }}
+              {{ Form::text('meta_title', null, ['class' => 'form-control']) }}
+              {{ $errors->first('meta_title', '<p class="text-red">:message</p>') }}
+            </div>
+            <div class="form-group {{ $errors->has('meta_description') ? 'has-error' : '' }}">
+              {{ Form::label('meta_description', 'META Description') }}
+              {{ Form::text('meta_description', null, ['class' => 'form-control']) }}
+              {{ $errors->first('meta_description', '<p class="text-red">:message</p>') }}
+            </div>
+            <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : '' }}">
+              {{ Form::label('excerpt', 'Excerpt') }}
+              {{ Form::textarea('excerpt', null, ['class' => 'form-control', 'placeholder' => 'The Blog Post\'s excerpt', 'rows' => 5]) }}
+              {{ $errors->first('excerpt', '<p class="text-red">:message</p>') }}
+            </div>
+            <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
+              {{ Form::label('content', 'Content') }}
+              {{ Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => 'The Blog Post\'s content', 'rows' => 15]) }}
+              {{ $errors->first('content', '<p class="text-red">:message</p>') }}
+            </div>
+          </div>
+          <div class="box-footer">
+            {{ Form::submit('Save', ['class' => 'btn btn-primary']) }}
+            {{ Form::close() }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</aside>
 @stop
