@@ -16,8 +16,16 @@
   <section class="content">
     <div class="row">
       <div class="col-md-12">
-        <div class="box {{ $errors->count() ? 'box-danger' : 'box-primary' }} ">
+        <div class="box {{ $errors->count() ? 'box-danger' : 'box-primary' }}">
+          <div class='box-header'>
+            <h3 class='box-title'>Editing Post: {{ $post->title }}</h3>
+            <div class="box-tools">
+              <a href="{{ route('control.post.destroy', $post->slug) }}" title="Delete {{ $post->title }}" class="btn btn-danger">Delete</a>
+            </div>
+          </div>
           <div class="box-body">
+            @include('core::Admin/Partials/FlashMessages')
+
           @if (isset($post))
             {{ Form::model($post, ['method' => 'PUT', 'route' => ['control.post.update', $post->slug], 'role' => 'form']) }}
             {{ Form::hidden('author_id', 1) }}

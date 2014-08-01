@@ -93,7 +93,10 @@ class PostAdminController extends BaseController {
       return Redirect::route('control.post.edit', $post->slug)->withInput()->withErrors($post->getErrors());
     }
 
-    return Redirect::route('control.post.index');
+    return Redirect::route('control.post.index')->with([
+      'flash-type' => 'success',
+      'flash-message' => 'Successfully updated '. $post->title .'!'
+    ]);
   }
 
   /**

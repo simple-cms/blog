@@ -5,7 +5,7 @@
 <aside class="right-side">
   <section class="content-header">
     <h1>
-      Blog Posts
+      Blog
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
@@ -18,7 +18,13 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="box">
+          <div class='box-header'>
+            <h3 class='box-title'>Post List</h3>
+          </div><!-- /.box-header -->
           <div class="box-body table-responsive">
+
+            @include('core::Admin/Partials/FlashMessages')
+
             <table id="posts" class="table table-bordered table-striped">
               <thead>
                 <tr>
