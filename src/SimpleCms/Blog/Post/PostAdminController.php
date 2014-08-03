@@ -39,8 +39,6 @@ class PostAdminController extends BaseController {
   public function index()
   {
     return View::make('blog::Admin/Post/List', [
-      'metaTitle' => 'Home page title',
-      'metaDesciption' => 'Home page description',
       'posts' => $this->post->all()
     ]);
   }
@@ -52,7 +50,7 @@ class PostAdminController extends BaseController {
    */
   public function create()
   {
-    dd('Show the form for creating a new resource.');
+    return View::make('blog::Admin/Post/Form');
   }
 
   /**
@@ -62,7 +60,17 @@ class PostAdminController extends BaseController {
    */
   public function store()
   {
-    dd('Store a newly created resource in storage.');
+    $post = $this->post->store(Input::all());
+
+    if ($post->hasErrors())
+    {
+      return Redirect::route('control.post.create')->withInput()->withErrors($post->getErrors());
+    }
+
+    return Redirect::route('control.post.index')->with([
+      'flash-type' => 'success',
+      'flash-message' => 'Successfully created '. $post->title .'!'
+    ]);
   }
 
   /**
@@ -73,8 +81,6 @@ class PostAdminController extends BaseController {
   public function edit($slug)
   {
     return View::make('blog::Admin/Post/Form', [
-      'metaTitle' => 'slug page title',
-      'metaDesciption' => 'slug page description',
       'post' => $this->post->getFirstBy('slug', $slug)
     ]);
   }

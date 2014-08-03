@@ -42,6 +42,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                @if(count($posts))
                   @foreach($posts as $post)
                   <tr>
                     <td><a href="{{ route('control.post.edit', $post->slug) }}" title="Edit {{ $post->title }}">{{ $post->title }}</a></td>
@@ -50,6 +51,11 @@
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                   </tr>
                   @endforeach
+                @else
+                  <tr>
+                    <td colspan="4">You've not created a Blog Post yet, {{ link_to_route('control.post.create', 'click here to create one.') }}</td>
+                  </tr>
+                @endif
                 </tbody>
                 <tfoot>
                   <tr>
