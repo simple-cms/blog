@@ -9,7 +9,7 @@ class Post extends BaseModel {
     'author_id' => 'numeric|required',
     'category_id' => 'numeric|required',
     'status' => 'numeric|required',
-    'slug' => 'alpha_dash|max:80|unique:posts,'. $this->slug,// unique:users,username,'.$id
+    'slug' => 'alpha_dash|max:80|unique:posts',
     'meta_title' => 'max:70',
     'meta_description' => 'max:155',
     'title' => 'max:100|required',
