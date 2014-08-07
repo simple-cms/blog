@@ -32,6 +32,8 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="basic">
+            	@include('core::Admin/Partials/FlashMessages')
+
               <table id="posts" class="table table-bordered table-striped">
                 <thead>
                   <tr>
