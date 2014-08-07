@@ -47,7 +47,7 @@
                 @if(count($posts))
                   @foreach($posts as $post)
                   <tr>
-                    <td><a href="{{ route('control.post.edit', $post->slug) }}" title="Edit {{ $post->title }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('control.post.edit', $post->id) }}" title="Edit {{ $post->title }}">{{ $post->title }}</a></td>
                     <td>!!{{ $post->status }}!!</td>
                     <td>!!{{ $post->author }}!!</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>

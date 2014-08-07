@@ -38,7 +38,7 @@
             @include('core::Admin/Partials/FlashMessages')
 
             @if (isset($post))
-              {{ Form::model($post, ['method' => 'PUT', 'route' => ['control.post.update', $post->slug], 'role' => 'form']) }}
+              {{ Form::model($post, ['method' => 'PUT', 'route' => ['control.post.update', $post->id], 'role' => 'form']) }}
               {{ Form::hidden('author_id', '1') }}
             @else
               {{ Form::open(['method' => 'POST', 'route' => 'control.post.store', 'role' => 'form']) }}

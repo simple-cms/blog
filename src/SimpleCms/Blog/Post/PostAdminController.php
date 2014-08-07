@@ -78,10 +78,10 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function edit($slug)
+  public function edit($id)
   {
     return View::make('blog::Admin/Post/Form', [
-      'post' => $this->post->getFirstBy('slug', $slug)
+      'post' => $this->post->getById($id)
     ]);
   }
 
@@ -90,13 +90,13 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function update($slug)
+  public function update($id)
   {
-    $post = $this->post->update($slug, Input::all());
+    $post = $this->post->update($id, Input::all());
 
     if ($post->hasErrors())
     {
-      return Redirect::route('control.post.edit', $post->slug)->withInput()->withErrors($post->getErrors());
+      return Redirect::route('control.post.edit', $post->id)->withInput()->withErrors($post->getErrors());
     }
 
     return Redirect::route('control.post.index')->with([
@@ -110,7 +110,7 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function destroy($slug)
+  public function destroy($id)
   {
     dd('Remove the specified resource from storage.');
   }
