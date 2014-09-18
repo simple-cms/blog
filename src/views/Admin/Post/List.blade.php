@@ -4,12 +4,12 @@
 <aside class="right-side">
   <section class="content-header">
     <h1>
-      Blog Posts
+      {{ Lang::get('blog::post.plural') }}
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('control.post.index') }}">Blog Posts</a></li>
-      <li class="active">Blog Post List</li>
+      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ Lang::get('core::core.dashboard') }}</a></li>
+      <li><a href="{{ route('control.post.index') }}">{{ Lang::get('blog::post.plural') }}</a></li>
+      <li class="active">{{ Lang::get('blog::post.singular') }} {{ Lang::get('core::core.list') }}</li>
     </ol>
   </section>
 
@@ -18,15 +18,15 @@
       <div class="col-md-12">
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs pull-right">
-            <li><a href="#help" data-toggle="tab">Help</a></li>
-            <li class="active"><a href="#basic" data-toggle="tab">Blog Posts</a></li>
-            <li class="pull-left header"><i class="fa fa-envelope"></i> Blog Post List</li>
+            <li><a href="#help" data-toggle="tab">{{ Lang::get('core::core.help') }}</a></li>
+            <li class="active"><a href="#basic" data-toggle="tab">{{ Lang::get('blog::post.plural') }}</a></li>
+            <li class="pull-left header"><i class="fa fa-envelope"></i> {{ Lang::get('blog::post.singular') }} {{ Lang::get('core::core.list') }}</li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Actions <span class="caret"></span>
+              {{ Lang::get('core::core.actions') }} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('control.post.create') }}"><i class="fa fa-pencil-square-o"></i> New Blog Post</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('control.post.create') }}"><i class="fa fa-pencil-square-o"></i> {{ Lang::get('core::core.create') }} {{ Lang::get('blog::post.singular') }}</a></li>
               </ul>
             </li>
           </ul>
@@ -37,34 +37,44 @@
               <table id="posts" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Author</th>
-                    <th>Last Update</th>
+                    <th>{{ Lang::get('core::core.title') }}</th>
+                    <th>{{ Lang::get('core::core.status') }}</th>
+                    <th>{{ Lang::get('core::core.author') }}</th>
+                    <th>{{ Lang::get('core::core.updated') }}</th>
+                    <th>{{ Lang::get('core::core.actions') }}</th>
                   </tr>
                 </thead>
                 <tbody>
                 @if(count($posts))
                   @foreach($posts as $post)
                   <tr>
-                    <td><a href="{{ route('control.post.edit', $post->id) }}" title="Edit {{ $post->title }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('control.post.edit', $post->id) }}">{{ $post->title }}</a></td>
                     <td>!!{{ $post->status }}!!</td>
                     <td>!!{{ $post->author }}!!</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
+                    <td>
+                    {{ Form::open(['route' => ['control.post.destroy', $post->id], 'method' => 'delete', 'class' => '']) }}
+                      <div class="btn-group">
+                        <a href="{{ route('control.post.edit', [$post->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
+                        {{ Form::submit(Lang::get('core::core.destroy'), ['class' => 'btn btn-danger']) }}
+                      </div>
+                    {{ Form::close() }}
+                    </td>
                   </tr>
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="4">You've not created a Blog Post yet, {{ link_to_route('control.post.create', 'click here to create one.') }}</td>
+                    <td colspan="4">{{ Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route('control.post.create', 'click here')]) }}
                   </tr>
                 @endif
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Author</th>
-                    <th>Last Update</th>
+                    <th>{{ Lang::get('core::core.title') }}</th>
+                    <th>{{ Lang::get('core::core.status') }}</th>
+                    <th>{{ Lang::get('core::core.author') }}</th>
+                    <th>{{ Lang::get('core::core.updated') }}</th>
+                    <th>{{ Lang::get('core::core.actions') }}</th>
                   </tr>
                 </tfoot>
               </table>

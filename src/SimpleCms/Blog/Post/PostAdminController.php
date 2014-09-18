@@ -13,7 +13,7 @@ class PostAdminController extends BaseController {
    *
    * @var Simple\Blog\Post\PostRepositoryInterface
    */
-  protected $postInterface;
+  protected $post;
 
   /**
    * Set up the class
@@ -114,4 +114,5 @@ class PostAdminController extends BaseController {
   {
     dd('Remove the specified resource from storage.');
   }
+
 }

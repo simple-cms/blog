@@ -2,7 +2,7 @@
 
 use SimpleCms\Blog\Models\Post;
 
-class PostTableSeeder extends Seeder {
+class PostsTableSeeder extends Seeder {
 
   public function __construct()
   {
@@ -31,7 +31,7 @@ class PostTableSeeder extends Seeder {
       }
 
       // Generate a fake Post
-      $posts = [
+      $posts[] = [
         'author_id' => 1,
         'category_id' => 1,
         'status' => (bool) rand(0, 1),
@@ -45,10 +45,10 @@ class PostTableSeeder extends Seeder {
         'created_at' => $this->faker->dateTime(),
         'updated_at' => $this->faker->dateTime(),
       ];
-
-      // Finally insert the Posts
-      DB::table('posts')->insert($posts);
     }
+
+    // Finally insert the Posts
+    DB::table('posts')->insert($posts);
   }
 
 }

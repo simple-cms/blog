@@ -21,7 +21,7 @@ class CategoriesTableSeeder extends Seeder {
     for ($i = 0; $i < 2; $i++)
     {
       // Generate a fake Category
-      $categories = [
+      $categories[] = [
         'slug' => $this->faker->slug(),
         'title' => implode(' ', $this->faker->words(5)),
         'excerpt' => implode(' ', $this->faker->sentences(25)),
@@ -31,10 +31,10 @@ class CategoriesTableSeeder extends Seeder {
         'created_at' => $this->faker->dateTime(),
         'updated_at' => $this->faker->dateTime(),
       ];
-
-      // Finally insert the Posts
-      DB::table('categories')->insert($categories);
     }
+
+    // Finally insert the Posts
+    DB::table('categories')->insert($categories);
   }
 
 }

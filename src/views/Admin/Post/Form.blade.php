@@ -4,12 +4,12 @@
 <aside class="right-side">
   <section class="content-header">
     <h1>
-      Blog Posts
+      {{ Lang::get('blog::post.plural') }}
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('control.post.index') }}">Blog Posts</a></li>
-      <li class="active">{{ isset($post) ? 'Edit Blog Post'  : 'New Blog Post' }}</li>
+      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ Lang::get('core::core.dashboard') }}</a></li>
+      <li><a href="{{ route('control.post.index') }}">{{ Lang::get('blog::post.plural') }}</a></li>
+      <li class="active">{{ isset($post) ? Lang::get('core::core.edit') : Lang::get('core::core.create') }} {{ Lang::get('blog::post.singular') }}</li>
     </ol>
   </section>
 
@@ -18,24 +18,24 @@
       <div class="col-md-12">
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs pull-right">
-            <li><a href="#info" data-toggle="tab">Information</a></li>
-            <li><a href="#seo" data-toggle="tab">SEO</a></li>
-            <li class="active"><a href="#basic" data-toggle="tab">Basic</a></li>
-            <li class="pull-left header"><i class="fa fa-envelope"></i> {{ isset($post) ? 'Editing Blog Post: '. $post->title  : 'New Blog Post' }}</li>
+            <li><a href="#info" data-toggle="tab">{{ Lang::get('core::core.info')}}</a></li>
+            <li><a href="#seo" data-toggle="tab">{{ Lang::get('core::core.seo')}}</a></li>
+            <li class="active"><a href="#basic" data-toggle="tab">{{ Lang::get('core::core.basics')}}</a></li>
+            <li class="pull-left header"><i class="fa fa-envelope"></i> {{ isset($post) ? Lang::get('core::core.editing', ['model' => Lang::get('blog::post.singular'), 'name' => $post->title]) : Lang::get('core::core.create') .' '. Lang::get('blog::post.singular') }}</li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              Actions <span class="caret"></span>
+              {{ Lang::get('core::core.actions')}} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-eye"></i> Preview</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-bar-chart-o"></i> Statisctics</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-eye"></i> {{ Lang::get('core::core.preview')}}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-bar-chart-o"></i> {{ Lang::get('core::core.stats')}}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-trash-o"></i> {{ Lang::get('core::core.destroy')}}</a></li>
               </ul>
             </li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="basic">
-            @include('core::Admin/Partials/FlashMessages')
+              @include('core::Admin/Partials/FlashMessages')
 
             @if (isset($post))
               {{ Form::model($post, ['method' => 'PUT', 'route' => ['control.post.update', $post->id], 'role' => 'form']) }}

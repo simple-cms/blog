@@ -11,7 +11,7 @@ class PostPublicController extends BaseController {
    *
    * @var Simple\Blog\Post\PostRepositoryInterface
    */
-  protected $postInterface;
+  protected $post;
 
   /**
    * Set up the class
@@ -20,13 +20,13 @@ class PostPublicController extends BaseController {
    *
    * @return void
    */
-  public function __construct(PostRepositoryInterface $posts)
+  public function __construct(PostRepositoryInterface $post)
   {
     // Call the parent constructor just in case
     parent::__construct();
 
     // Set up our Model Interface
-    $this->posts = $posts;
+    $this->post = $post;
   }
 
   /**
@@ -39,7 +39,7 @@ class PostPublicController extends BaseController {
     return View::make('blog::Public/PostList', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
-      'posts' => $this->posts->all()
+      'posts' => $this->post->all()
     ]);
   }
 
@@ -53,7 +53,7 @@ class PostPublicController extends BaseController {
     return View::make('blog::Public/PostShow', [
       'metaTitle' => 'slug page title',
       'metaDesciption' => 'slug page description',
-      'post' => $this->posts->getFirstBy('slug', $slug)
+      'post' => $this->post->getFirstBy('slug', $slug)
     ]);
   }
 
