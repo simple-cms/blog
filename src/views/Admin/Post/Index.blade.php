@@ -48,23 +48,24 @@
                 @if(count($posts))
                   @foreach($posts as $post)
                   <tr>
-                    <td><a href="{{ route('control.post.edit', $post->id) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route('control.post.edit', [$post->id]) }}">{{ $post->title }}</a></td>
                     <td>!!{{ $post->status }}!!</td>
                     <td>!!{{ $post->author }}!!</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
-                    {{ Form::open(['route' => ['control.post.destroy', $post->id], 'method' => 'delete', 'class' => '']) }}
+                    {!! Form::open(['route' => ['control.post.destroy', $post->id], 'method' => 'delete']) !!}
                       <div class="btn-group">
                         <a href="{{ route('control.post.edit', [$post->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
-                        {{ Form::submit(Lang::get('core::core.destroy'), ['class' => 'btn btn-danger']) }}
+                        <a href="{{ route('post.show', [$post->slug]) }}" class="btn btn-success" target="_blank">{{ Lang::get('core::core.preview') }}</a>
+                        {!! Form::submit(Lang::get('core::core.destroy'), ['class' => 'btn btn-danger']) !!}
                       </div>
-                    {{ Form::close() }}
+                    {!! Form::close() !!}
                     </td>
                   </tr>
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="4">{{ Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route('control.post.create', 'click here')]) }}
+                    <td colspan="4">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route('control.post.create', 'click here')]) !!}
                   </tr>
                 @endif
                 </tbody>

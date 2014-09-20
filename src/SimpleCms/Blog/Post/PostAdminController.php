@@ -3,7 +3,6 @@
 use SimpleCms\Blog\Post\PostRepositoryInterface;
 use SimpleCms\Core\Controllers\BaseController;
 use View;
-use Input;
 use Redirect;
 
 class PostAdminController extends BaseController {
@@ -38,7 +37,7 @@ class PostAdminController extends BaseController {
    */
   public function index()
   {
-    return View::make('blog::Admin/Post/List', [
+    return View::make('blog::Admin/Post/Index', [
       'posts' => $this->post->all()
     ]);
   }
@@ -58,14 +57,9 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function store()
+  public function store(CreatePostRequest $request)
   {
-    $post = $this->post->store(Input::all());
-
-    if ($post->hasErrors())
-    {
-      return Redirect::route('control.post.create')->withInput()->withErrors($post->getErrors());
-    }
+    $post = $this->post->store($request->all());
 
     return Redirect::route('control.post.index')->with([
       'flash-type' => 'success',
@@ -90,18 +84,13 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function update($id)
+  public function update(UpdatePostRequest $request)
   {
-    $post = $this->post->update($id, Input::all());
-
-    if ($post->hasErrors())
-    {
-      return Redirect::route('control.post.edit', $post->id)->withInput()->withErrors($post->getErrors());
-    }
+    $post = $this->post->update($request->route->parameter('post'), $request->all());
 
     return Redirect::route('control.post.index')->with([
       'flash-type' => 'success',
-      'flash-message' => 'Successfully updated '. $post->title .'!'
+      'flash-message' => 'Successfully updated '. $request->title .'!'
     ]);
   }
 

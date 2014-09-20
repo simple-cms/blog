@@ -36,7 +36,7 @@ class PostPublicController extends BaseController {
    */
   public function index()
   {
-    return View::make('blog::Public/PostList', [
+    return View::make('blog::Public/Post/Index', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
       'posts' => $this->post->all()
@@ -50,7 +50,7 @@ class PostPublicController extends BaseController {
    */
   public function show($slug)
   {
-    return View::make('blog::Public/PostShow', [
+    return View::make('blog::Public/Post/Show', [
       'metaTitle' => 'slug page title',
       'metaDesciption' => 'slug page description',
       'post' => $this->post->getFirstBy('slug', $slug)
