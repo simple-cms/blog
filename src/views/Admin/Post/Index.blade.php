@@ -40,6 +40,7 @@
                     <th>{{ Lang::get('core::core.title') }}</th>
                     <th>{{ Lang::get('core::core.status') }}</th>
                     <th>{{ Lang::get('core::core.author') }}</th>
+                    <th>{{ Lang::get('blog::category.singular') }}</th>
                     <th>{{ Lang::get('core::core.updated') }}</th>
                     <th>{{ Lang::get('core::core.actions') }}</th>
                   </tr>
@@ -51,6 +52,7 @@
                     <td><a href="{{ route('control.post.edit', [$post->id]) }}">{{ $post->title }}</a></td>
                     <td>!!{{ $post->status }}!!</td>
                     <td>!!{{ $post->author }}!!</td>
+                    <td>{{ (!is_null($post->category)) ? $post->category->title : Lang::get('core::core.none') }}</td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
                     {!! Form::open(['route' => ['control.post.destroy', $post->id], 'method' => 'delete']) !!}
@@ -74,6 +76,7 @@
                     <th>{{ Lang::get('core::core.title') }}</th>
                     <th>{{ Lang::get('core::core.status') }}</th>
                     <th>{{ Lang::get('core::core.author') }}</th>
+                    <th>{{ Lang::get('blog::category.singular') }}</th>
                     <th>{{ Lang::get('core::core.updated') }}</th>
                     <th>{{ Lang::get('core::core.actions') }}</th>
                   </tr>

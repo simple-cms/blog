@@ -52,11 +52,6 @@
                 {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'The Blog Post\'s title']) !!}
                 {!! $errors->first('title', '<p class="text-red">:message</p>') !!}
               </div>
-              <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
-                {!! Form::label('category_id', Lang::get('blog::category.singular')) !!}
-                {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
-                {!! $errors->first('category_id', '<p class="text-red">:message</p>') !!}
-              </div>
               <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : '' }}">
                 {!! Form::label('excerpt', Lang::get('core::core.excerpt')) !!}
                 {!! Form::textarea('excerpt', null, ['class' => 'form-control', 'placeholder' => 'The Blog Post\'s excerpt', 'rows' => 5]) !!}

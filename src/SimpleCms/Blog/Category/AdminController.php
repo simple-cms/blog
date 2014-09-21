@@ -48,9 +48,7 @@ class AdminController extends BaseController {
    */
   public function create()
   {
-    return View::make('blog::Admin/Category/Form', [
-      'categories' => $this->category->getSelectArray()
-    ]);
+    return View::make('blog::Admin/Category/Form');
   }
 
   /**

@@ -1,17 +1,21 @@
 <?php namespace SimpleCms\Blog\Post;
 
 use SimpleCms\Core\BaseController;
+use SimpleCms\Blog\Category\RepositoryInterface as CategoryRepositoryInterface;
 use View;
 use Redirect;
 
 class AdminController extends BaseController {
 
   /**
-   * Store our RepositoryInterface implementation.
-   *
    * @var Simple\Blog\Post\RepositoryInterface
    */
   protected $post;
+
+  /**
+   * @var SimpleCms\Blog\Category\RepositoryInterface
+   */
+  protected $category;
 
   /**
    * Set up the class
@@ -20,13 +24,13 @@ class AdminController extends BaseController {
    *
    * @return void
    */
-  public function __construct(RepositoryInterface $post)
+  public function __construct(RepositoryInterface $post, CategoryRepositoryInterface $category)
   {
     // Call the parent constructor just in case
     parent::__construct();
 
-    // Set up our Model Interface
     $this->post = $post;
+    $this->category = $category;
   }
 
   /**
@@ -37,7 +41,7 @@ class AdminController extends BaseController {
   public function index()
   {
     return View::make('blog::Admin/Post/Index', [
-      'posts' => $this->post->all()
+      'posts' => $this->post->all(['category'])
     ]);
   }
 
@@ -48,7 +52,9 @@ class AdminController extends BaseController {
    */
   public function create()
   {
-    return View::make('blog::Admin/Post/Form');
+    return View::make('blog::Admin/Post/Form', [
+      'categories' => $this->category->getSelectArray()
+    ]);
   }
 
   /**
@@ -74,7 +80,8 @@ class AdminController extends BaseController {
   public function edit($id)
   {
     return View::make('blog::Admin/Post/Form', [
-      'post' => $this->post->getById($id)
+      'post' => $this->post->getById($id),
+      'categories' => $this->category->getSelectArray()
     ]);
   }
 

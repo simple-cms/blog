@@ -16,4 +16,9 @@ class Post extends BaseModel {
     'content'
   ];
 
+    public function category()
+    {
+        return $this->belongsTo('SimpleCms\Blog\Category\Category');
+    }
+
 }

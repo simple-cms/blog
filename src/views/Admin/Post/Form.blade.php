@@ -54,10 +54,7 @@
               </div>
               <div class="form-group {{ $errors->has('category_id') ? 'has-error' : '' }}">
                 {!! Form::label('category_id', Lang::get('blog::category.singular')) !!}
-                {!! Form::select('category_id', [
-                  0 => 'Default Category',
-                  1 => 'News',
-                ], null, ['class' => 'form-control']) !!}
+                {!! Form::select('category_id', $categories, isset($post) ? $post->category_id : null, ['class' => 'form-control']) !!}
                 {!! $errors->first('category_id', '<p class="text-red">:message</p>') !!}
               </div>
               <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
