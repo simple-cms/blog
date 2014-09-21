@@ -14,4 +14,9 @@ class Category extends BaseModel {
     'content'
   ];
 
+  public function categories()
+  {
+    return $this->hasMany('SimpleCms\Blog\Post\Post');
+  }
+
 }
