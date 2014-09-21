@@ -39,7 +39,7 @@ class PublicController extends BaseController {
     return View::make('blog::Public/Post/Index', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
-      'posts' => $this->post->all()
+      'posts' => $this->post->paginate()
     ]);
   }
 
