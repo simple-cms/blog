@@ -14,6 +14,9 @@
   </section>
 
   <section class="content">
+
+    @include('core::Admin/Partials/FlashMessages')
+
     <div class="row">
       <div class="col-md-12">
         <div class="nav-tabs-custom">
@@ -32,9 +35,7 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="basic">
-            	@include('core::Admin/Partials/FlashMessages')
-
-              <table id="catgories" class="table table-bordered table-striped">
+            	<table id="catgories" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>{{ Lang::get('core::core.title') }}</th>
