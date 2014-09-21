@@ -1,4 +1,4 @@
-<?php namespace SimpleCms\Blog\Post;
+<?php namespace SimpleCms\Blog\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -13,9 +13,6 @@ class UpdateRequest extends FormRequest {
 	{
 		return [
       'id' => 'numeric',
-      'author_id' => 'numeric|required',
-      'category_id' => 'numeric|required',
-      'status' => 'numeric|required',
       'slug' => 'alpha_dash|max:80',
       'meta_title' => 'max:70',
       'meta_description' => 'max:155',

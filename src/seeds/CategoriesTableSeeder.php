@@ -1,6 +1,7 @@
 <?php
 
-use SimpleCms\Blog\Models\Post;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class CategoriesTableSeeder extends Seeder {
 
@@ -12,19 +13,19 @@ class CategoriesTableSeeder extends Seeder {
   public function run()
   {
     // Switch of Eloquent Guarding
-    Eloquent::unguard();
+    Model::unguard();
 
     // An empty variable to hold our Categories
     $categories = [];
 
     // Generate the Categories
-    for ($i = 0; $i < 2; $i++)
+    for ($i = 0; $i < 5; $i++)
     {
       // Generate a fake Category
       $categories[] = [
         'slug' => $this->faker->slug(),
-        'title' => implode(' ', $this->faker->words(5)),
-        'excerpt' => implode(' ', $this->faker->sentences(25)),
+        'title' => implode(' ', $this->faker->words(2)),
+        'excerpt' => implode(' ', $this->faker->sentences(5)),
         'meta_title' => $this->faker->sentence(5),
         'meta_description' => $this->faker->sentence(5),
         'content' => '<p>' . implode("</p>\n\n<p>", $this->faker->paragraphs(5)) . '</p>',

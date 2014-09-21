@@ -1,3 +1,5 @@
-<?php namespace SimpleCms\Blog\Post;
+<?php namespace SimpleCms\Blog\Category;
 
-interface RepositoryInterface {}
+interface RepositoryInterface {
+
+}

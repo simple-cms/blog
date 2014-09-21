@@ -1,5 +1,17 @@
 <?php namespace SimpleCms\Blog\Category;
 
-use Illuminate\Database\Eloquent\Model;
+use SimpleCms\Core\BaseModel;
 
-class Post extends Model {}
+class Category extends BaseModel {
+
+  protected $fillable = [
+    'status',
+    'slug',
+    'meta_title',
+    'meta_description',
+    'title',
+    'excerpt',
+    'content'
+  ];
+
+}

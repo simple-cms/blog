@@ -1,10 +1,9 @@
 <?php namespace SimpleCms\Blog\Category;
 
 use Illuminate\Database\Eloquent\Model;
-use SimpleCms\Blog\Post\RepositoryInterface;
-use SimpleCms\Core\Repositories\AbstractEloquentRepository;
+use SimpleCms\Core\AbstractEloquentRepository;
 
-class EloquentPostRepository extends AbstractEloquentRepository implements PostRepositoryInterface {
+class EloquentRepository extends AbstractEloquentRepository implements RepositoryInterface {
 
   /**
    * @var Model

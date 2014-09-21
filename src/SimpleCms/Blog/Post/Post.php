@@ -1,6 +1,6 @@
 <?php namespace SimpleCms\Blog\Post;
 
-use SimpleCms\Core\Models\BaseModel;
+use SimpleCms\Core\BaseModel;
 
 class Post extends BaseModel {
 

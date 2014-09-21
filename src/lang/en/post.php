@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'singular' => 'Blog Post',
+  'singular' => 'Blog Post',
   'plural' => 'Blog Posts',
-	'noCategory' => 'None',
-	'noAuthor' => 'None',
+  'noCategory' => 'None',
+  'noAuthor' => 'None',
 ];

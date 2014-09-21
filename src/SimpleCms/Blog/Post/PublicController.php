@@ -1,26 +1,26 @@
 <?php namespace SimpleCms\Blog\Post;
 
-use SimpleCms\Blog\Post\PostRepositoryInterface;
-use SimpleCms\Core\Controllers\BaseController;
+use SimpleCms\Blog\Post\RepositoryInterface;
+use SimpleCms\Core\BaseController;
 use View;
 
-class PostPublicController extends BaseController {
+class PublicController extends BaseController {
 
   /**
-   * Store our PostRepositoryInterface implementation.
+   * Store our RepositoryInterface implementation.
    *
-   * @var Simple\Blog\Post\PostRepositoryInterface
+   * @var Simple\Blog\Post\RepositoryInterface
    */
   protected $post;
 
   /**
    * Set up the class
    *
-   * @param Simple\Blog\Post\PostRepositoryInterface $posts
+   * @param Simple\Blog\Post\RepositoryInterface $posts
    *
    * @return void
    */
-  public function __construct(PostRepositoryInterface $post)
+  public function __construct(RepositoryInterface $post)
   {
     // Call the parent constructor just in case
     parent::__construct();

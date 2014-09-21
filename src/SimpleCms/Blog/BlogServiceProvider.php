@@ -2,7 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use SimpleCms\Blog\Post\Post;
-use SimpleCms\Blog\Post\EloquentPostRepository;
+use SimpleCms\Blog\Category\Category;
 
 class BlogServiceProvider extends ServiceProvider {
 
@@ -32,9 +32,13 @@ class BlogServiceProvider extends ServiceProvider {
    */
   public function register()
   {
-    $this->app->bind('SimpleCms\Blog\Post\PostRepositoryInterface', function($app)
+    $this->app->bind('\SimpleCms\Blog\Post\RepositoryInterface', function($app)
     {
-      return new EloquentPostRepository(new Post);
+      return new \SimpleCms\Blog\Post\EloquentRepository(new Post);
+    });
+    $this->app->bind('\SimpleCms\Blog\Category\RepositoryInterface', function($app)
+    {
+      return new \SimpleCms\Blog\Category\EloquentRepository(new Category);
     });
   }
 
@@ -45,7 +49,7 @@ class BlogServiceProvider extends ServiceProvider {
    */
   public function provides()
   {
-    return array();
+    return [];
   }
 
 }

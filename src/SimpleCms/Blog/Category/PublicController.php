@@ -1,31 +1,32 @@
-<?php namespace SimpleCms\Blog\Post;
+<?php namespace SimpleCms\Blog\Category;
 
 use SimpleCms\Blog\Category\RepositoryInterface;
-use SimpleCms\Core\Controllers\BaseController;
+use SimpleCms\Core\BaseController;
+use View;
 
-class Controller extends BaseController {
+class PublicController extends BaseController {
 
   /**
    * Store our PostRepositoryInterface implementation.
    *
-   * @var Simple\Blog\Interfaces\PostRepositoryInterface
+   * @var Simple\Blog\Category\RepositoryInterface
    */
-  protected $postInterface;
+  protected $category;
 
   /**
    * Set up the class
    *
-   * @param Simple\Blog\Interfaces\PostRepositoryInterface $posts
+   * @param Simple\Blog\Post\RepositoryInterface $category
    *
    * @return void
    */
-  public function __construct(PostRepositoryInterface $posts)
+  public function __construct(RepositoryInterface $category)
   {
     // Call the parent constructor just in case
     parent::__construct();
 
     // Set up our Model Interface
-    $this->posts = $posts;
+    $this->category = $category;
   }
 
   /**
@@ -35,10 +36,10 @@ class Controller extends BaseController {
    */
   public function index()
   {
-    return \View::make('blog::Public/PostList', [
+    return View::make('blog::Public/Category/Index', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
-      'posts' => $this->posts->all()
+      'categorys' => $this->category->all()
     ]);
   }
 
@@ -49,10 +50,11 @@ class Controller extends BaseController {
    */
   public function show($slug)
   {
-    return \View::make('blog::Public/PostShow', [
+    return View::make('blog::Public/Category/Show', [
       'metaTitle' => 'slug page title',
       'metaDesciption' => 'slug page description',
-      'post' => $this->posts->getFirstBy('slug', $slug)
+      'category' => $this->category->getFirstBy('slug', $slug)
     ]);
   }
+
 }

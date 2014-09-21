@@ -1,27 +1,26 @@
 <?php namespace SimpleCms\Blog\Post;
 
-use SimpleCms\Blog\Post\PostRepositoryInterface;
-use SimpleCms\Core\Controllers\BaseController;
+use SimpleCms\Core\BaseController;
 use View;
 use Redirect;
 
-class PostAdminController extends BaseController {
+class AdminController extends BaseController {
 
   /**
-   * Store our PostRepositoryInterface implementation.
+   * Store our RepositoryInterface implementation.
    *
-   * @var Simple\Blog\Post\PostRepositoryInterface
+   * @var Simple\Blog\Post\RepositoryInterface
    */
   protected $post;
 
   /**
    * Set up the class
    *
-   * @param Simple\Blog\Post\PostRepositoryInterface $post
+   * @param Simple\Blog\Post\RepositoryInterface $post
    *
    * @return void
    */
-  public function __construct(PostRepositoryInterface $post)
+  public function __construct(RepositoryInterface $post)
   {
     // Call the parent constructor just in case
     parent::__construct();
@@ -57,7 +56,7 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function store(CreatePostRequest $request)
+  public function store(CreateRequest $request)
   {
     $post = $this->post->store($request->all());
 
@@ -84,7 +83,7 @@ class PostAdminController extends BaseController {
    *
    * @return Response
    */
-  public function update(UpdatePostRequest $request)
+  public function update(UpdateRequest $request)
   {
     $post = $this->post->update($request->route->parameter('post'), $request->all());
 
