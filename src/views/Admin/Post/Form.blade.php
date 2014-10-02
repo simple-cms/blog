@@ -57,13 +57,13 @@
                 {!! Form::select('category_id', $categories, isset($post) ? $post->category_id : null, ['class' => 'form-control']) !!}
                 {!! $errors->first('category_id', '<p class="text-red">:message</p>') !!}
               </div>
-              <div class="form-group {{ $errors->has('status') ? 'has-error' : '' }}">
-                {!! Form::label('status', Lang::get('core::core.status')) !!}
-                {!! Form::select('status', [
+              <div class="form-group {{ $errors->has('hidden') ? 'has-error' : '' }}">
+                {!! Form::label('hidden', Lang::get('core::core.hidden')) !!}
+                {!! Form::select('hidden', [
                   0 => 'Visible',
                   1 => 'Hidden',
                 ], null, ['class' => 'form-control']) !!}
-                {!! $errors->first('status', '<p class="text-red">:message</p>') !!}
+                {!! $errors->first('hidden', '<p class="text-red">:message</p>') !!}
               </div>
               <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : '' }}">
                 {!! Form::label('excerpt', Lang::get('core::core.excerpt')) !!}

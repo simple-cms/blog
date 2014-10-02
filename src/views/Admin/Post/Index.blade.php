@@ -51,9 +51,19 @@
                   @foreach($posts as $post)
                   <tr>
                     <td><a href="{{ route('control.post.edit', [$post->id]) }}">{{ $post->title }}</a></td>
-                    <td>!!{{ $post->status }}!!</td>
+                    @if($post->hidden == 1)
+                    <td><span class="badge bg-red">{{ Lang::get('core::core.hidden') }}</span></td>
+                    @else
+                    <td><span class="badge bg-green">{{ Lang::get('core::core.visible') }}</span></td>
+                    @endif
                     <td>!!{{ $post->author }}!!</td>
-                    <td>{{ (!is_null($post->category)) ? $post->category->title : Lang::get('core::core.none') }}</td>
+                    <td>
+                      @if(!is_null($post->category))
+                        <a href="{{ route('control.category.edit', [$post->category->id]) }}">{{ $post->category->title }}</a>
+                      @else
+                        {{ Lang::get('core::core.none') }}
+                      @endif
+                    </td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
                     {!! Form::open(['route' => ['control.post.destroy', $post->id], 'method' => 'delete']) !!}
@@ -68,7 +78,7 @@
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="4">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route('control.post.create', 'click here')]) !!}
+                    <td colspan="6">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route('control.post.create', 'click here')]) !!}
                   </tr>
                 @endif
                 </tbody>

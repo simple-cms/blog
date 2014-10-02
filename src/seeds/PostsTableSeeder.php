@@ -35,7 +35,7 @@ class PostsTableSeeder extends Seeder {
       $posts[] = [
         'author_id' => 1,
         'category_id' => 1,
-        'status' => (bool) rand(0, 1),
+        'hidden' => (bool) rand(0, 1),
         'slug' => $this->faker->slug(),
         'meta_title' => $this->faker->sentence(5),
         'meta_description' => $this->faker->sentence(5),
