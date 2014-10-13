@@ -1,6 +1,9 @@
 {
     "name": "simple-cms/blog",
-    "description": "",
+    "description": "The Blog functionality for SimpleCMS",
+    "keywords": ["simple", "cms", "content managment system"],
+    "license": "MIT",
+    "type": "project",
     "authors": [
         {
             "name": "Tom Green",
@@ -13,7 +16,6 @@
     },
     "autoload": {
         "classmap": [
-            "src/seeds",
             "src/migrations"
         ],
         "psr-0": {
