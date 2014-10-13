@@ -20,7 +20,7 @@
             "src/seeds"
         ],
         "psr-0": {
-            "SimpleCms\\blog\\": "src/"
+            "SimpleCms\\Blog\\": "src/"
         }
     },
     "minimum-stability": "dev"
