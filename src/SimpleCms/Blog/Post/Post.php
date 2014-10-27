@@ -1,12 +1,8 @@
 <?php namespace SimpleCms\Blog\Post;
 
 use SimpleCms\Core\BaseModel;
-use SimpleCms\Asset\ModelTrait;
 
 class Post extends BaseModel {
-
-  // Include our Asset Trait
-  use ModelTrait;
 
   protected $fillable = [
     'category_id',
