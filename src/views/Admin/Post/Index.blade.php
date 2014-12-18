@@ -78,7 +78,7 @@
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="6">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'create', 'click here')]) !!}
+                    <td colspan="6">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.create', 'click here')]) !!}
                   </tr>
                 @endif
                 </tbody>

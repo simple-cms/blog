@@ -64,7 +64,7 @@
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="4">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::category.plural'), 'link' => link_to_route('control.category.create', 'click here')]) !!}
+                    <td colspan="4">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::category.plural'), 'link' => link_to_route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.create', 'click here')]) !!}
                   </tr>
                 @endif
                 </tbody>
