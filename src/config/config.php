@@ -2,9 +2,9 @@
 
 return [
   // Root Blog Post URL - example.com/<postURL>
-  'postURL' => 'xpost',
+  'postURL' => 'post',
 
   // Root Blog Category URL - example.com/<categoryURL>
-  'categoryURL' => 'xcategory',
+  'categoryURL' => 'category',
 
 ];
