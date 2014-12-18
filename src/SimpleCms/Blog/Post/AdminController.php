@@ -1,9 +1,10 @@
 <?php namespace SimpleCms\Blog\Post;
 
+use View;
+use Config;
+use Redirect;
 use SimpleCms\Core\BaseController;
 use SimpleCms\Blog\Category\RepositoryInterface as CategoryRepositoryInterface;
-use View;
-use Redirect;
 
 class AdminController extends BaseController {
 
@@ -66,7 +67,7 @@ class AdminController extends BaseController {
   {
     $post = $this->post->store($request->all());
 
-    return Redirect::route('control.post.index')->with([
+    return Redirect::route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.index')->with([
       'flash-type' => 'success',
       'flash-message' => 'Successfully created '. $post->title .'!'
     ]);
@@ -92,9 +93,9 @@ class AdminController extends BaseController {
    */
   public function update(UpdateRequest $request)
   {
-    $post = $this->post->update($request->route->parameter('post'), $request->all());
+    $post = $this->post->update($request->route()->getParameter(Config::get('blog::postURL')), $request->all());
 
-    return Redirect::route('control.post.index')->with([
+    return Redirect::route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.index')->with([
       'flash-type' => 'success',
       'flash-message' => 'Successfully updated '. $request->title .'!'
     ]);

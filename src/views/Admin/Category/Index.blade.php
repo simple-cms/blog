@@ -8,7 +8,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ Lang::get('core::core.dashboard') }}</a></li>
-      <li><a href="{{ route('control.category.index') }}">{{ Lang::get('blog::category.plural') }}</a></li>
+      <li><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index') }}">{{ Lang::get('blog::category.plural') }}</a></li>
       <li class="active">{{ Lang::get('blog::category.singular') }} {{ Lang::get('core::core.list') }}</li>
     </ol>
   </section>
@@ -29,7 +29,7 @@
               {{ Lang::get('core::core.actions') }} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route('control.post.create') }}"><i class="fa fa-pencil-square-o"></i> {{ Lang::get('core::core.create') }} {{ Lang::get('blog::category.singular') }}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.create') }}"><i class="fa fa-pencil-square-o"></i> {{ Lang::get('core::core.create') }} {{ Lang::get('blog::category.singular') }}</a></li>
               </ul>
             </li>
           </ul>
@@ -48,14 +48,14 @@
                 @if(count($categories))
                   @foreach($categories as $category)
                   <tr>
-                    <td><a href="{{ route('control.category.edit', [$category->id]) }}">{{ $category->title }}</a></td>
+                    <td><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.edit', [$category->id]) }}">{{ $category->title }}</a></td>
                     <td>!!{{ $category->status }}!!</td>
                     <td>{{ $category->updated_at->diffForHumans() }}</td>
                     <td>
-                    {!! Form::open(['route' => ['control.category.destroy', $category->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => [Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.destroy', $category->id], 'method' => 'delete']) !!}
                       <div class="btn-group">
-                        <a href="{{ route('control.category.edit', [$category->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
-                        <a href="{{ route('category.show', [$category->slug]) }}" class="btn btn-success" target="_blank">{{ Lang::get('core::core.preview') }}</a>
+                        <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.edit', [$category->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
+                        <a href="{{ route(Config::get('blog::categoryURL') .'.show', [$category->slug]) }}" class="btn btn-success" target="_blank">{{ Lang::get('core::core.preview') }}</a>
                         {!! Form::submit(Lang::get('core::core.destroy'), ['class' => 'btn btn-danger']) !!}
                       </div>
                     {!! Form::close() !!}

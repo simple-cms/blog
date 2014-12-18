@@ -1,8 +1,9 @@
 <?php namespace SimpleCms\Blog\Category;
 
-use SimpleCms\Core\BaseController;
 use View;
+use Config;
 use Redirect;
+use SimpleCms\Core\BaseController;
 
 class AdminController extends BaseController {
 
@@ -60,7 +61,7 @@ class AdminController extends BaseController {
   {
     $category = $this->category->store($request->all());
 
-    return Redirect::route('control.category.index')->with([
+    return Redirect::route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index')->with([
       'flash-type' => 'success',
       'flash-message' => 'Successfully created '. $category->title .'!'
     ]);
@@ -86,9 +87,9 @@ class AdminController extends BaseController {
    */
   public function update(UpdateRequest $request)
   {
-    $category = $this->category->update($request->route->parameter('category'), $request->all());
+    $category = $this->category->update($request->route()->getParameter(Config::get('blog::categoryURL')), $request->all());
 
-    return Redirect::route('control.category.index')->with([
+    return Redirect::route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index')->with([
       'flash-type' => 'success',
       'flash-message' => 'Successfully updated '. $request->title .'!'
     ]);
