@@ -7,7 +7,7 @@ use View;
 class PublicController extends BaseController {
 
   /**
-   * Store our PostRepositoryInterface implementation.
+   * Store our RepositoryInterface implementation.
    *
    * @var Simple\Blog\Category\RepositoryInterface
    */
@@ -16,7 +16,7 @@ class PublicController extends BaseController {
   /**
    * Set up the class
    *
-   * @param Simple\Blog\Post\RepositoryInterface $category
+   * @param Simple\Blog\Category\RepositoryInterface $category
    *
    * @return void
    */
