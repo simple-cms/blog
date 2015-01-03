@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use SimpleCms\Blog\Post\Post;
 use SimpleCms\Blog\Category\Category;
+use SimpleCms\Blog\Category\ContentProvider as CategoryContentProvider;
 
 class BlogServiceProvider extends ServiceProvider {
 
@@ -32,6 +33,8 @@ class BlogServiceProvider extends ServiceProvider {
    */
   public function register()
   {
+    $this->app->make('ContentProviderService')->registerProvider(new CategoryContentProvider);
+
     $this->app->bind('\SimpleCms\Blog\Post\RepositoryInterface', function($app)
     {
       return new \SimpleCms\Blog\Post\EloquentRepository(new Post);
