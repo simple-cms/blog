@@ -21,9 +21,22 @@ class BlogServiceProvider extends ServiceProvider {
    */
   public function boot()
   {
-    $this->package('simple-cms/blog');
+    // Register our package views
+    $this->loadViewsFrom('blog', __DIR__.'/../../views');
 
-    require __DIR__.'/../../routes.php';
+    // Register our package translation files
+    $this->loadTranslationsFrom('blog', __DIR__.'/../../lang');
+
+    // Register the files our package should publish
+    $this->publishes([
+      // Publish our views
+      __DIR__.'/../../views' => base_path('resources/views/vendor/blog'),
+      // Publish our config
+      __DIR__.'/../../config/category.php' => config_path('category.php'),
+      __DIR__.'/../../config/post.php' => config_path('post.php'),
+    ]);
+
+    require_once __DIR__ .'/../../routes.php';
   }
 
   /**
@@ -33,12 +46,18 @@ class BlogServiceProvider extends ServiceProvider {
    */
   public function register()
   {
+    // $this->mergeConfigFrom(
+    //   'blog', __DIR__.'/../../config/config.php'
+    // );
+
     $this->app->make('ContentProviderService')->registerProvider(new CategoryContentProvider);
 
     $this->app->bind('\SimpleCms\Blog\Post\RepositoryInterface', function($app)
     {
       return new \SimpleCms\Blog\Post\EloquentRepository(new Post);
     });
+
+
     $this->app->bind('\SimpleCms\Blog\Category\RepositoryInterface', function($app)
     {
       return new \SimpleCms\Blog\Category\EloquentRepository(new Category);

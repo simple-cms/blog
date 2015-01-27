@@ -8,7 +8,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ Lang::get('core::core.dashboard') }}</a></li>
-      <li><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.index') }}">{{ Lang::get('blog::post.plural') }}</a></li>
+      <li><a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.index') }}">{{ Lang::get('blog::post.plural') }}</a></li>
       <li class="active">{{ Lang::get('blog::post.singular') }} {{ Lang::get('core::core.list') }}</li>
     </ol>
   </section>
@@ -29,7 +29,7 @@
               {{ Lang::get('core::core.actions') }} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.create') }}"><i class="fa fa-pencil-square-o"></i> {{ Lang::get('core::core.create') }} {{ Lang::get('blog::post.singular') }}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.create') }}"><i class="fa fa-pencil-square-o"></i> {{ Lang::get('core::core.create') }} {{ Lang::get('blog::post.singular') }}</a></li>
               </ul>
             </li>
           </ul>
@@ -50,7 +50,7 @@
                 @if(count($posts))
                   @foreach($posts as $post)
                   <tr>
-                    <td><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.edit', [$post->id]) }}">{{ $post->title }}</a></td>
+                    <td><a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.edit', [$post->id]) }}">{{ $post->title }}</a></td>
                     @if($post->hidden == 1)
                     <td><span class="badge bg-red">{{ Lang::get('core::core.hidden') }}</span></td>
                     @else
@@ -59,17 +59,17 @@
                     <td>!!{{ $post->author }}!!</td>
                     <td>
                       @if(!is_null($post->category))
-                        <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.edit', [$post->category->id]) }}">{{ $post->category->title }}</a>
+                        <a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.edit', [$post->category->id]) }}">{{ $post->category->title }}</a>
                       @else
                         {{ Lang::get('core::core.none') }}
                       @endif
                     </td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
-                    {!! Form::open(['route' => [Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.destroy', $post->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => [config('core.adminURL') .'.'. core('post.postURL') .'.destroy', $post->id], 'method' => 'delete']) !!}
                       <div class="btn-group">
-                        <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.edit', [$post->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
-                        <a href="{{ route(Config::get('blog::postURL') .'.show', [$post->slug]) }}" class="btn btn-success" target="_blank">{{ Lang::get('core::core.preview') }}</a>
+                        <a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.edit', [$post->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
+                        <a href="{{ route(config('post.postURL') .'.show', [$post->slug]) }}" class="btn btn-success" target="_blank">{{ Lang::get('core::core.preview') }}</a>
                         {!! Form::submit(Lang::get('core::core.destroy'), ['class' => 'btn btn-danger']) !!}
                       </div>
                     {!! Form::close() !!}
@@ -78,7 +78,7 @@
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="6">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route(Config::get('core::adminURL') .'.'. Config::get('blog::postURL') .'.create', 'click here')]) !!}
+                    <td colspan="6">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::post.plural'), 'link' => link_to_route(config('core.adminURL') .'.'. config('post.postURL') .'.create', 'click here')]) !!}
                   </tr>
                 @endif
                 </tbody>

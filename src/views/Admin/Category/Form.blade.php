@@ -8,7 +8,7 @@
     </h1>
     <ol class="breadcrumb">
       <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ Lang::get('core::core.dashboard') }}</a></li>
-      <li><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index') }}">{{ Lang::get('blog::category.plural') }}</a></li>
+      <li><a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}">{{ Lang::get('blog::category.plural') }}</a></li>
       <li class="active">{{ isset($category) ? Lang::get('core::core.edit') : Lang::get('core::core.create') }} {{ Lang::get('blog::category.singular') }}</li>
     </ol>
   </section>
@@ -31,7 +31,7 @@
               </a>
               <ul class="dropdown-menu">
                 @if (isset($category))
-                <li role="presentation"><a href="{{ route(Config::get('blog::categoryURL') .'.show', [$category->slug]) }}" target="_blank" role="menuitem" tabindex="-1" href="#"><i class="fa fa-eye"></i> {{ Lang::get('core::core.preview')}}</a></li>
+                <li role="presentation"><a href="{{ route(config('blog.categoryURL') .'.show', [$category->slug]) }}" target="_blank" role="menuitem" tabindex="-1" href="#"><i class="fa fa-eye"></i> {{ Lang::get('core::core.preview')}}</a></li>
                 @endif
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-bar-chart-o"></i> {{ Lang::get('core::core.stats')}}</a></li>
                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><i class="fa fa-trash-o"></i> {{ Lang::get('core::core.destroy')}}</a></li>
@@ -41,10 +41,10 @@
           <div class="tab-content">
             <div class="tab-pane active" id="basic">
             @if (isset($category))
-              {!! Form::model($category, ['method' => 'PUT', 'route' => [Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.update', $category->id], 'role' => 'form']) !!}
+              {!! Form::model($category, ['method' => 'PUT', 'route' => [config('core.adminURL') .'.'. config('category.categoryURL') .'.update', $category->id], 'role' => 'form']) !!}
               {!! Form::hidden('author_id', '1') !!}
             @else
-              {!! Form::open(['method' => 'POST', 'route' => Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.store', 'role' => 'form']) !!}
+              {!! Form::open(['method' => 'POST', 'route' => config('core.adminURL') .'.'. config('category.categoryURL') .'.store', 'role' => 'form']) !!}
               {!! Form::hidden('author_id', '1') !!}
             @endif
               <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
