@@ -15,7 +15,7 @@ class CreateRequest extends FormRequest {
       'id' => 'numeric',
       'author_id' => 'numeric|required',
       'category_id' => 'numeric|required',
-      'status' => 'numeric|required',
+      'hidden' => 'numeric|required',
       'slug' => 'alpha_dash|max:80',
       'meta_title' => 'max:70',
       'meta_description' => 'max:155',

@@ -66,7 +66,7 @@
                     </td>
                     <td>{{ $post->updated_at->diffForHumans() }}</td>
                     <td>
-                    {!! Form::open(['route' => [config('core.adminURL') .'.'. core('post.postURL') .'.destroy', $post->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => [config('core.adminURL') .'.'. config('post.postURL') .'.destroy', $post->id], 'method' => 'delete']) !!}
                       <div class="btn-group">
                         <a href="{{ route(config('core.adminURL') .'.'. config('post.postURL') .'.edit', [$post->id]) }}" class="btn btn-info">{{ trans('core::core.edit') }}</a>
                         <a href="{{ route(config('post.postURL') .'.show', [$post->slug]) }}" class="btn btn-success" target="_blank">{{ trans('core::core.preview') }}</a>
