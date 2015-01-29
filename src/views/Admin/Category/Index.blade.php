@@ -4,12 +4,12 @@
 <aside class="right-side">
   <section class="content-header">
     <h1>
-      {{ Lang::get('blog::category.plural') }}
+      {{ trans('blog::category.plural') }}
     </h1>
     <ol class="breadcrumb">
-      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ Lang::get('core::core.dashboard') }}</a></li>
-      <li><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index') }}">{{ Lang::get('blog::category.plural') }}</a></li>
-      <li class="active">{{ Lang::get('blog::category.singular') }} {{ Lang::get('core::core.list') }}</li>
+      <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.dashboard') }}</a></li>
+      <li><a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index') }}">{{ trans('blog::category.plural') }}</a></li>
+      <li class="active">{{ trans('blog::category.singular') }} {{ trans('core::core.list') }}</li>
     </ol>
   </section>
 
@@ -21,15 +21,15 @@
       <div class="col-md-12">
         <div class="nav-tabs-custom">
           <ul class="nav nav-tabs pull-right">
-            <li><a href="#help" data-toggle="tab">{{ Lang::get('core::core.help') }}</a></li>
-            <li class="active"><a href="#basic" data-toggle="tab">{{ Lang::get('blog::category.plural') }}</a></li>
-            <li class="pull-left header"><i class="fa fa-envelope"></i> {{ Lang::get('blog::category.singular') }} {{ Lang::get('core::core.list') }}</li>
+            <li><a href="#help" data-toggle="tab">{{ trans('core::core.help') }}</a></li>
+            <li class="active"><a href="#basic" data-toggle="tab">{{ trans('blog::category.plural') }}</a></li>
+            <li class="pull-left header"><i class="fa fa-envelope"></i> {{ trans('blog::category.singular') }} {{ trans('core::core.list') }}</li>
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-              {{ Lang::get('core::core.actions') }} <span class="caret"></span>
+              {{ trans('core::core.actions') }} <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.create') }}"><i class="fa fa-pencil-square-o"></i> {{ Lang::get('core::core.create') }} {{ Lang::get('blog::category.singular') }}</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.create') }}"><i class="fa fa-pencil-square-o"></i> {{ trans('core::core.create') }} {{ trans('blog::category.singular') }}</a></li>
               </ul>
             </li>
           </ul>
@@ -38,25 +38,25 @@
             	<table id="catgories" class="table table-bordered table-striped">
                 <thead>
                   <tr>
-                    <th>{{ Lang::get('core::core.title') }}</th>
-                    <th>{{ Lang::get('core::core.status') }}</th>
-                    <th>{{ Lang::get('core::core.updated') }}</th>
-                    <th>{{ Lang::get('core::core.actions') }}</th>
+                    <th>{{ trans('core::core.title') }}</th>
+                    <th>{{ trans('core::core.status') }}</th>
+                    <th>{{ trans('core::core.updated') }}</th>
+                    <th>{{ trans('core::core.actions') }}</th>
                   </tr>
                 </thead>
                 <tbody>
                 @if(count($categories))
                   @foreach($categories as $category)
                   <tr>
-                    <td><a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.edit', [$category->id]) }}">{{ $category->title }}</a></td>
+                    <td><a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.edit', [$category->id]) }}">{{ $category->title }}</a></td>
                     <td>!!{{ $category->status }}!!</td>
                     <td>{{ $category->updated_at->diffForHumans() }}</td>
                     <td>
-                    {!! Form::open(['route' => [Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.destroy', $category->id], 'method' => 'delete']) !!}
+                    {!! Form::open(['route' => [config('core.adminURL') .'.'. config('category.categoryURL') .'.destroy', $category->id], 'method' => 'delete']) !!}
                       <div class="btn-group">
-                        <a href="{{ route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.edit', [$category->id]) }}" class="btn btn-info">{{ Lang::get('core::core.edit') }}</a>
-                        <a href="{{ route(Config::get('blog::categoryURL') .'.show', [$category->slug]) }}" class="btn btn-success" target="_blank">{{ Lang::get('core::core.preview') }}</a>
-                        {!! Form::submit(Lang::get('core::core.destroy'), ['class' => 'btn btn-danger']) !!}
+                        <a href="{{ route(config('core.adminURL') .'.'. config('category.categoryURL') .'.edit', [$category->id]) }}" class="btn btn-info">{{ trans('core::core.edit') }}</a>
+                        <a href="{{ route(config('category.categoryURL') .'.show', [$category->slug]) }}" class="btn btn-success" target="_blank">{{ trans('core::core.preview') }}</a>
+                        {!! Form::submit(trans('core::core.destroy'), ['class' => 'btn btn-danger']) !!}
                       </div>
                     {!! Form::close() !!}
                     </td>
@@ -64,16 +64,16 @@
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="4">{!! Lang::get('core::core.missing', ['model' => Lang::get('blog::category.plural'), 'link' => link_to_route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.create', 'click here')]) !!}
+                    <td colspan="4">{!! trans('core::core.missing', ['model' => trans('blog::category.plural'), 'link' => link_to_route(config('core.adminURL') .'.'. config('category.categoryURL') .'.create', 'click here')]) !!}
                   </tr>
                 @endif
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>{{ Lang::get('core::core.title') }}</th>
-                    <th>{{ Lang::get('core::core.status') }}</th>
-                    <th>{{ Lang::get('core::core.updated') }}</th>
-                    <th>{{ Lang::get('core::core.actions') }}</th>
+                    <th>{{ trans('core::core.title') }}</th>
+                    <th>{{ trans('core::core.status') }}</th>
+                    <th>{{ trans('core::core.updated') }}</th>
+                    <th>{{ trans('core::core.actions') }}</th>
                   </tr>
                 </tfoot>
               </table>

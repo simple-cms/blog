@@ -61,7 +61,7 @@ class AdminController extends BaseController {
   {
     $category = $this->category->store($request->all());
 
-    return Redirect::route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index')->with([
+    return Redirect::route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index')->with([
       'flash-type' => 'success',
       'flash-message' => 'Successfully created '. $category->title .'!'
     ]);
@@ -87,9 +87,9 @@ class AdminController extends BaseController {
    */
   public function update(UpdateRequest $request)
   {
-    $category = $this->category->update($request->route()->getParameter(Config::get('blog::categoryURL')), $request->all());
+    $category = $this->category->update($request->route()->getParameter(config('category.categoryURL')), $request->all());
 
-    return Redirect::route(Config::get('core::adminURL') .'.'. Config::get('blog::categoryURL') .'.index')->with([
+    return Redirect::route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index')->with([
       'flash-type' => 'success',
       'flash-message' => 'Successfully updated '. $request->title .'!'
     ]);
