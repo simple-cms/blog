@@ -22,10 +22,10 @@ class BlogServiceProvider extends ServiceProvider {
   public function boot()
   {
     // Register our package views
-    $this->loadViewsFrom('blog', __DIR__.'/../../views');
+    $this->loadViewsFrom(__DIR__.'/../../views', 'blog');
 
     // Register our package translation files
-    $this->loadTranslationsFrom('blog', __DIR__.'/../../lang');
+    $this->loadTranslationsFrom(__DIR__.'/../../lang', 'blog');
 
     // Register the files our package should publish
     $this->publishes([
