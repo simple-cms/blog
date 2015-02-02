@@ -64,7 +64,7 @@
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="4">{!! trans('core::core.missing', ['model' => trans('blog::category.plural'), 'link' => link_to_route(config('core.adminURL') .'.'. config('category.categoryURL') .'.create', 'click here')]) !!}
+                    <td colspan="4">{!! trans('core::core.missing', ['model' => trans('blog::category.plural'), 'link' => link_to_route(config('core.adminURL') .'.'. config('category.categoryURL') .'.create', 'click here')]) !!}</td>
                   </tr>
                 @endif
                 </tbody>

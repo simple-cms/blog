@@ -49,6 +49,7 @@
             @endif
               <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                 {!! Form::label('title', trans('core::core.title')) !!}
+                <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::core.helpTitle', ['model' => trans('blog::post.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::text('title', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('title', '<p class="text-red">:message</p>') !!}
               </div>
@@ -67,11 +68,13 @@
               </div>
               <div class="form-group {{ $errors->has('excerpt') ? 'has-error' : '' }}">
                 {!! Form::label('excerpt', trans('core::core.excerpt')) !!}
+                <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::core.helpExcerpt', ['model' => trans('blog::post.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::textarea('excerpt', null, ['class' => 'form-control', 'rows' => 5]) !!}
                 {{ $errors->first('excerpt', '<p class="text-red">:message</p>') }}
               </div>
               <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                 {!! Form::label('content', trans('core::core.content')) !!}
+                <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::core.helpContent', ['model' => trans('blog::post.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::textarea('content', null, ['class' => 'form-control', 'rows' => 15]) !!}
                 {!! $errors->first('content', '<p class="text-red">:message</p>') !!}
               </div>
@@ -79,16 +82,19 @@
             <div class="tab-pane" id="seo">
               <div class="form-group {{ $errors->has('meta_title') ? 'has-error' : '' }}">
                 {!! Form::label('meta_title', trans('core::seo.meta_title')) !!}
+                <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::seo.helpMetaTitle', ['model' => trans('blog::post.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::text('meta_title', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('meta_title', '<p class="text-red">:message</p>') !!}
               </div>
               <div class="form-group {{ $errors->has('meta_description') ? 'has-error' : '' }}">
                 {!! Form::label('meta_description', trans('core::seo.meta_description')) !!}
+                <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::core.helpMetaDescription', ['model' => trans('blog::post.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::text('meta_description', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('meta_description', '<p class="text-red">:message</p>') !!}
               </div>
               <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
                 {!! Form::label('slug', trans('core::core.slug')) !!}
+                <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::seo.helpSlug', ['model' => trans('blog::post.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::text('slug', null, ['class' => 'form-control']) !!}
                 {!! $errors->first('slug', '<p class="text-red">:message</p>') !!}
               </div>
