@@ -7,7 +7,7 @@ class Post extends BaseModel {
   protected $fillable = [
     'category_id',
     'author_id',
-    'status',
+    'hidden',
     'slug',
     'meta_title',
     'meta_description',
