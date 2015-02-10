@@ -93,7 +93,7 @@ class AdminController extends BaseController {
    */
   public function update(UpdateRequest $request)
   {
-    $post = $this->post->update($request->route()->getParameter(config('post.postURL')), $request->all());
+    $post = $this->post->update($request->{config('post.postURL')}, $request->all());
 
     return Redirect::route(config('core.adminURL') .'.'. config('post.postURL') .'.index')->with([
       'flash-type' => 'success',

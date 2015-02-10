@@ -87,7 +87,7 @@ class AdminController extends BaseController {
    */
   public function update(UpdateRequest $request)
   {
-    $category = $this->category->update($request->route()->getParameter(config('category.categoryURL')), $request->all());
+    $category = $this->category->update($request->{config('category.categoryURL')}, $request->all());
 
     return Redirect::route(config('core.adminURL') .'.'. config('category.categoryURL') .'.index')->with([
       'flash-type' => 'success',
