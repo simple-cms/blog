@@ -57,7 +57,7 @@
                 {!! Form::label('excerpt', trans('core::core.excerpt')) !!}:
                 <a class="js-help-popover" data-trigger="hover click" data-container="body" data-toggle="popover" data-placement="right" data-content="{!! trans('core::core.helpExcerpt', ['model' => trans('blog::category.singular')]) !!}"><i class="fa fa-question-circle"></i></a>
                 {!! Form::textarea('excerpt', null, ['class' => 'form-control', 'placeholder' => 'The Blog Post\'s excerpt', 'rows' => 5]) !!}
-                {{ $errors->first('excerpt', '<p class="text-red">:message</p>') }}
+                {!! $errors->first('excerpt', '<p class="text-red">:message</p>') !!}
               </div>
               <div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
                 {!! Form::label('content', trans('core::core.content')) !!}:
