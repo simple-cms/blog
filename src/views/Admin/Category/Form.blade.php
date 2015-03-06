@@ -40,6 +40,9 @@
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="basic">
+
+              {!! form($form) !!}
+
             @if (isset($category))
               {!! Form::model($category, ['method' => 'PUT', 'route' => [config('core.adminURL') .'.'. config('category.categoryURL') .'.update', $category->id], 'role' => 'form']) !!}
               {!! Form::hidden('author_id', '1') !!}

@@ -1,5 +1,6 @@
 <?php namespace SimpleCms\Blog\Category;
 
+use Kris\LaravelFormBuilder\FormBuilder;
 use View;
 use Config;
 use Redirect;
@@ -45,11 +46,18 @@ class AdminController extends BaseController {
   /**
    * Show the form for creating a new resource.
    *
+   * @param FormBuilder $formBuilder
+   *
    * @return Response
    */
-  public function create()
+  public function create(FormBuilder $formBuilder)
   {
-    return view('blog::Admin/Category/Form');
+    $form = $formBuilder->create('SimpleCms\Blog\Category\CategoryForm', [
+      'method' => 'POST',
+      'url' => route(config('core.adminURL') .'.'. config('category.categoryURL') .'.store')
+    ]);
+
+    return view('blog::Admin/Category/Form', compact('form'));
   }
 
   /**
