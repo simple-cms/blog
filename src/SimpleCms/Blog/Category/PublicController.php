@@ -36,7 +36,7 @@ class PublicController extends BaseController {
    */
   public function index()
   {
-    return View::make('blog::Public/Category/Index', [
+    return view('blog::Public/Category/Index', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
       'categorys' => $this->category->paginate()
@@ -50,7 +50,7 @@ class PublicController extends BaseController {
    */
   public function show($slug)
   {
-    return View::make('blog::Public/Category/Show', [
+    return view('blog::Public/Category/Show', [
       'metaTitle' => 'slug page title',
       'metaDesciption' => 'slug page description',
       'category' => $this->category->getFirstBy('slug', $slug)

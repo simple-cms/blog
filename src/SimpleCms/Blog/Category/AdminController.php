@@ -37,7 +37,7 @@ class AdminController extends BaseController {
    */
   public function index()
   {
-    return View::make('blog::Admin/Category/Index', [
+    return view('blog::Admin/Category/Index', [
       'categories' => $this->category->all()
     ]);
   }
@@ -49,7 +49,7 @@ class AdminController extends BaseController {
    */
   public function create()
   {
-    return View::make('blog::Admin/Category/Form');
+    return view('blog::Admin/Category/Form');
   }
 
   /**
@@ -74,7 +74,7 @@ class AdminController extends BaseController {
    */
   public function edit($id)
   {
-    return View::make('blog::Admin/Category/Form', [
+    return view('blog::Admin/Category/Form', [
       'category' => $this->category->getById($id),
       'categories' => $this->category->getSelectArray()
     ]);

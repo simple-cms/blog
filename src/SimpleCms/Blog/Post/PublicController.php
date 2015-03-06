@@ -36,7 +36,7 @@ class PublicController extends BaseController {
    */
   public function index()
   {
-    return View::make('blog::Public/Post/Index', [
+    return view('blog::Public/Post/Index', [
       'metaTitle' => 'Home page title',
       'metaDesciption' => 'Home page description',
       'posts' => $this->post->paginate()
@@ -50,7 +50,7 @@ class PublicController extends BaseController {
    */
   public function show($slug)
   {
-    return View::make('blog::Public/Post/Show', [
+    return view('blog::Public/Post/Show', [
       'metaTitle' => 'slug page title',
       'metaDesciption' => 'slug page description',
       'post' => $this->post->getFirstBy('slug', $slug)
