@@ -2,7 +2,9 @@
 
 use SimpleCms\Core\BaseModel;
 
-class Post extends BaseModel {
+class Post extends BaseModel
+{
+  protected $table = 'blog_post';
 
   protected $fillable = [
     'category_id',

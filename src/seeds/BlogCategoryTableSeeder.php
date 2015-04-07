@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class CategoriesTableSeeder extends Seeder {
+class BlogCategoryTableSeeder extends Seeder {
 
   public function __construct()
   {
@@ -35,7 +35,7 @@ class CategoriesTableSeeder extends Seeder {
     }
 
     // Finally insert the Posts
-    DB::table('categories')->insert($categories);
+    DB::table('blog_category')->insert($categories);
   }
 
 }

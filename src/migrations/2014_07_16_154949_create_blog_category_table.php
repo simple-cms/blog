@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration {
+class CreateBlogCategoryTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,7 +11,7 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-    Schema::create('categories', function($table)
+    Schema::create('blog_category', function($table)
     {
       $table->increments('id');
       $table->string('title', 100);
@@ -31,7 +31,7 @@ class CreateCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::dropIfExists('blog_category');
 	}
 
 }

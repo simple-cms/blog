@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class PostsTableSeeder extends Seeder {
+class BlogPostTableSeeder extends Seeder {
 
   public function __construct()
   {
@@ -49,7 +49,7 @@ class PostsTableSeeder extends Seeder {
     }
 
     // Finally insert the Posts
-    DB::table('posts')->insert($posts);
+    DB::table('blog_post')->insert($posts);
   }
 
 }
